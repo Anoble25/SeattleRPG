@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
+<<<<<<< HEAD
 -- Generation Time: May 14, 2018 at 08:24 PM
+=======
+-- Generation Time: May 14, 2018 at 10:11 PM
+>>>>>>> 46aebe5ce187c8be94f7cbcd109c257e1e745c80
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -34,6 +38,7 @@ CREATE TABLE `scenarios` (
   `prompt_text` varchar(255) NOT NULL,
   `opt_1_choice_text` varchar(255) NOT NULL,
   `opt_1_result_text` varchar(255) NOT NULL,
+<<<<<<< HEAD
   `option_1_health_effect` varchar(255) NOT NULL,
   `opt_1_money_effect` varchar(255) NOT NULL,
   `opt_1_mood_effect` varchar(255) NOT NULL,
@@ -47,6 +52,21 @@ CREATE TABLE `scenarios` (
   `opt_3_money` varchar(255) NOT NULL,
   `opt_3_mood` varchar(255) NOT NULL,
   `opt_3_health` varchar(255) NOT NULL
+=======
+  `opt_1_health` int(11) NOT NULL,
+  `opt_1_money` float NOT NULL,
+  `opt_1_mood` int(11) NOT NULL,
+  `opt_2_choice_text` varchar(255) NOT NULL,
+  `opt_2_result_text` varchar(255) NOT NULL,
+  `opt_2_health` int(11) NOT NULL,
+  `opt_2_money` float NOT NULL,
+  `opt_2_mood` int(11) NOT NULL,
+  `opt_3_choice_text` varchar(255) NOT NULL,
+  `opt_3_result_text` varchar(255) NOT NULL,
+  `opt_3_health` int(11) NOT NULL,
+  `opt_3_money` float NOT NULL,
+  `opt_3_mood` int(11) NOT NULL
+>>>>>>> 46aebe5ce187c8be94f7cbcd109c257e1e745c80
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
