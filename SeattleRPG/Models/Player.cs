@@ -11,7 +11,7 @@ namespace SeattleRPG.Models
     private int _health;
     private int _mood;
     private int _money;
-    private int id;
+    private int _id;
 
     public Player(string Name, string socialStatus, int Health, int Mood, int Money, int id = 0)
     {
@@ -20,7 +20,7 @@ namespace SeattleRPG.Models
       _health = Health;
       _mood = Mood;
       _money = Money;
-      id = id;
+      _id = id;
     }
     public string GetName()
     {
