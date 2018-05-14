@@ -11,5 +11,7 @@ namespace SeattleRPG.Controllers
     {
         return View();
     }
+    
+
   }
 }

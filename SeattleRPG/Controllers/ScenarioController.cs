@@ -6,11 +6,14 @@ namespace SeattleRPG.Controllers
 {
   public class ScenarioController : Controller
   {
-    [HttpGet("/scenarios")]
-    public ActionResult Index()
+    [HttpPost("/scenario")]
+    public ActionResult Index(int id)
     {
       List<Scenario> allScenarios = Scenario.GetAll();
+      // game.Add("allScenarios", allScenarios);
       return View(allScenarios);
+
+      //return View();
     }
   }
 }
