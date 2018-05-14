@@ -6,3 +6,8 @@
 /Users/Guest/Desktop/SeattleRPG/SeattleRPG/bin/Debug/netcoreapp1.1/SeattleRPG.pdb
 /Users/Guest/Desktop/SeattleRPG/SeattleRPG/obj/Debug/netcoreapp1.1/SeattleRPG.dll
 /Users/Guest/Desktop/SeattleRPG/SeattleRPG/obj/Debug/netcoreapp1.1/SeattleRPG.pdb
+/Users/brianhenry/Desktop/SeattleRPG/SeattleRPG/obj/Debug/netcoreapp1.1/SeattleRPG.csproj.CoreCompileInputs.cache
+/Users/brianhenry/Desktop/SeattleRPG/SeattleRPG/obj/Debug/netcoreapp1.1/SeattleRPG.AssemblyInfoInputs.cache
+/Users/brianhenry/Desktop/SeattleRPG/SeattleRPG/obj/Debug/netcoreapp1.1/SeattleRPG.AssemblyInfo.cs
+/Users/brianhenry/Desktop/SeattleRPG/SeattleRPG/obj/Debug/netcoreapp1.1/SeattleRPG.dll
+/Users/brianhenry/Desktop/SeattleRPG/SeattleRPG/obj/Debug/netcoreapp1.1/SeattleRPG.pdb
