@@ -1,0 +1,8 @@
+/Users/Guest/Desktop/SeattleRPG/SeattleRPG/bin/Debug/netcoreapp1.1/SeattleRPG.deps.json
+/Users/Guest/Desktop/SeattleRPG/SeattleRPG/bin/Debug/netcoreapp1.1/SeattleRPG.runtimeconfig.json
+/Users/Guest/Desktop/SeattleRPG/SeattleRPG/bin/Debug/netcoreapp1.1/SeattleRPG.runtimeconfig.dev.json
+/Users/Guest/Desktop/SeattleRPG/SeattleRPG/obj/Debug/netcoreapp1.1/SeattleRPG.AssemblyInfo.cs
+/Users/Guest/Desktop/SeattleRPG/SeattleRPG/bin/Debug/netcoreapp1.1/SeattleRPG.dll
+/Users/Guest/Desktop/SeattleRPG/SeattleRPG/bin/Debug/netcoreapp1.1/SeattleRPG.pdb
+/Users/Guest/Desktop/SeattleRPG/SeattleRPG/obj/Debug/netcoreapp1.1/SeattleRPG.dll
+/Users/Guest/Desktop/SeattleRPG/SeattleRPG/obj/Debug/netcoreapp1.1/SeattleRPG.pdb

@@ -40,6 +40,6 @@ namespace SeattleRPG
   }
   public static class DBConfiguration
   {
-    public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=seattleRPG;";
+    public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=seattle_rpg;";
   }
 }
