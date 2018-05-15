@@ -1,0 +1,122 @@
+body {
+  background-color: #0086D6;
+}
+
+
+p {
+  font-family: courier;
+}
+
+h1 {
+  text-align: center;
+}
+
+a {
+  color: red;
+}
+
+div#footer {
+  position:fixed;
+  text-align: center;
+  bottom:0px;
+  left:0px;
+  width:100%;
+  color:#CCC;
+  background:#333;
+  padding:8px;
+}
+
+.col-md-12 {
+  text-align: center;
+}
+
+#game-window {
+  background-color: black;
+  width: 1000px;
+  height: 800px;
+  margin: auto;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+.scenario-image {
+
+}
+
+.scenario-image img {
+  width: 500px;
+  height: 300px;
+  padding: 10px;
+  /*margin-left: 10px;
+  padding-bottom: 19px;*/
+
+}
+
+
+.scenario-box {
+  background-color: #C9CED1;
+  width: 1000px;
+  height: 275px;
+  border-radius: 19px 50px 30px;
+  padding: 10px;
+  font-size: 18px;
+  /*margin-bottom: 10px;*/
+
+  /*margin-left: 90px;*/
+  /*padding-bottom: 15px;*/
+}
+
+.previous-scenario-box {
+  background-color: #C9CED1;
+  width: 1000px;
+  height: 140px;
+  border-radius: 19px 50px 30px;
+  padding: 10px;
+  /*margin-top: 30px;*/
+
+  /*margin-left: 90px;*/
+  /*padding-bottom: 15px;*/
+}
+
+.player-stats {
+  width: auto;
+  height: 285px;
+  margin: auto;
+  background-color: green;
+
+  /*padding-left: 200px;*/
+  /*display: block;*/
+
+}
+
+.day {
+  color: yellow;
+}
+
+.health {
+  color: red;
+  font-size: 19px;
+
+
+
+}
+
+.money {
+  color: lightgreen;
+  font-size: 19px;
+
+
+
+}
+
+.mood {
+  color: purple;
+  font-size: 19px;
+
+
+}
+
+.avatar {
+  background-color: blue;
+  width: 10px;
+}
