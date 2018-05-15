@@ -88,38 +88,39 @@ namespace SeattleRPG.Models
     //     conn.Dispose();
     //   }
     // }
-    // public static Player Find(int id)
-    // {
-    //   MySqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   var cmd = conn.CreateCommand() as MySqlCommand();
-    //   cmd.CommandText = @"SELECT * FROM players WHERE id = (@searchId);";
-    //
-    //   cmd.Parameters.Add(new MySqlParameter("@searchId", id));
-    //
-    //   var rdr = cmd.ExecuteReader() as MySqlDataReader;
-    //   int playerId = 0;
-    //   string playerName = "";
-    //   int playerHealth = 0;
-    //   int playerMood = 0;
-    //   int playerMoney = 0;
-    //
-    //   while(rdr.Read())
-    //   {
-    //     playerId = rdr.GetInt32(0);
-    //     playerName = rdr.GetString(1);
-    //     playerHealth = rdr.GetInt32(2);
-    //     playerMood = rdr.GetInt32(3);
-    //     playerMoney = rdr.GetInt32(4);
-    //   }
-    //   Player newPlayer = new Player(playerName, playerHealth, playerMood, playerMoney, playerId);
-    //   conn.Close();
-    //   if (conn != null)
-    //   {
-    //     conn.Dispose();
-    //   }
-    //   return newPlayer;
-    // }
+    public static Player Find(int id)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM current_player WHERE id = (@searchId);";
+
+      cmd.Parameters.Add(new MySqlParameter("@searchId", id));
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      int playerId = 0;
+      string playerName = "";
+      int playerHealth = 0;
+      int playerMood = 0;
+      int playerMoney = 0;
+
+      while(rdr.Read())
+      {
+        playerId = rdr.GetInt32(0);
+        playerName = rdr.GetString(1);
+        playerHealth = rdr.GetInt32(2);
+        playerMood = rdr.GetInt32(3);
+        playerMoney = rdr.GetInt32(4);
+      }
+      Player newPlayer = new Player(playerName, playerHealth, playerMood, playerMoney, playerId);
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return newPlayer;
+    }
+
     public void UpdatePlayerProperties(string newName, int newHealth, int newMood, int newMoney)
     {
       MySqlConnection conn = DB.Connection();
@@ -138,6 +139,26 @@ namespace SeattleRPG.Models
       _health = newHealth;
       _mood = newMood;
       _money = newMoney;
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
+    public void UpdatePlayerName(string newName)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE current_player SET name = @newName WHERE id = 0;";
+
+      cmd.Parameters.Add(new MySqlParameter("@newName", newName));
+
+
+      cmd.ExecuteNonQuery();
+      _name = newName;
+
       conn.Close();
       if (conn != null)
       {

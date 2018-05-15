@@ -15,11 +15,12 @@ namespace SeattleRPG.Controllers
     [HttpPost("/player")]
     public ActionResult SubmitName()
     {
+
         string playerName = Request.Form["player-name"];
         Player newPlayer = new Player(playerName);
-        Dictionary<string, object> model=new Dictionary<string, object>();
+        newPlayer.UpdatePlayerName(playerName);
 
-        model.Add("currentPlayer", newPlayer);
+        //model.Add("currentPlayer", newPlayer);
 //save here
         return RedirectToAction("Index", "Scenario", new { id = 1 });
     }
