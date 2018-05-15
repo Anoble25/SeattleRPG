@@ -21,7 +21,7 @@ namespace SeattleRPG.Controllers
 
         model.Add("currentPlayer", newPlayer);
 //save here
-        return RedirectToAction("Index", "Scenario", new { id = 4 });
+        return RedirectToAction("Index", "Scenario", new { id = 1 });
     }
 
 

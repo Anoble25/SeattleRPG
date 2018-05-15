@@ -12,17 +12,17 @@ namespace SeattleRPG.Models
         private string _opt_1_choice_text;
         private string _opt_1_result_text;
         private int _opt_1_health;
-        private float _opt_1_money;
+        private int _opt_1_money;
         private int _opt_1_mood;
         private string _opt_2_choice_text;
         private string _opt_2_result_text;
         private int _opt_2_health;
-        private float _opt_2_money;
+        private int _opt_2_money;
         private int _opt_2_mood;
         private string _opt_3_choice_text;
         private string _opt_3_result_text;
         private int _opt_3_health;
-        private float _opt_3_money;
+        private int _opt_3_money;
         private int _opt_3_mood;
 
 
@@ -56,6 +56,72 @@ namespace SeattleRPG.Models
         public string GetScenarioName()
         {
           return _scenario_name;
+        }
+
+        public string GetPromptText()
+        {
+          return _prompt_text;
+        }
+
+        public string GetOpt1ChoiceText()
+        {
+          return _opt_1_choice_text;
+        }
+        public string GetOpt1ResultText()
+        {
+          return _opt_1_result_text;
+        }
+        public int GetOpt1Health()
+        {
+          return _opt_1_health;
+        }
+        public int GetOpt1Money()
+        {
+          return _opt_1_money;
+        }
+        public int GetOpt1Mood()
+        {
+          return _opt_1_mood;
+        }
+        public string GetOpt2ChoiceText()
+        {
+          return _opt_2_choice_text;
+        }
+        public string GetOpt2ResultText()
+        {
+          return _opt_2_result_text;
+        }
+        public int GetOpt2Health()
+        {
+          return _opt_2_health;
+        }
+        public int GetOpt2Money()
+        {
+          return _opt_2_money;
+        }
+        public int GetOpt2Mood()
+        {
+          return _opt_2_mood;
+        }
+        public string GetOpt3ChoiceText()
+        {
+          return _opt_3_choice_text;
+        }
+        public string GetOpt3ResultText()
+        {
+          return _opt_3_result_text;
+        }
+        public int GetOpt3Health()
+        {
+          return _opt_3_health;
+        }
+        public int GetOpt3Money()
+        {
+          return _opt_3_money;
+        }
+        public int GetOpt3Mood()
+        {
+          return _opt_3_mood;
         }
 
         public static List<Scenario> GetAll()
@@ -104,53 +170,69 @@ namespace SeattleRPG.Models
           return allScenarios;
         }
 
-        // public override bool Equals(System.Object otherScenario)
-        // {
-        //   if (!(otherScenario is Scenario))
-        //   {
-        //     return false;
-        //   }
-        //   else
-        //   {
-        //     Scenario newScenario = (Scenario) otherScenario;
-        //     bool idEquality = (this.GetId() == newScenario.GetId());
-        //     //when we change an object from one type to another, its called "TYPE CASTING"
-        //     bool nameEquality = (this.GetName() == newScenario.GetName());
-        //     return (idEquality && nameEquality);
-        //   }
-        // }
-        //
-        // public static Scenario Find(int id)
-        // {
-        //   MySqlConnection conn = DB.Connection();
-        //   conn.Open();
-        //   var cmd = conn.CreateCommand() as MySqlCommand;
-        //   cmd.CommandText = @"SELECT * FROM scenarios WHERE id = (@searchId);";
-        //
-        //   MySqlParameter searchId = new MySqlParameter();
-        //   searchId.ParameterName = "@searchId";
-        //   searchId.Value = id;
-        //   cmd.Parameters.Add(searchId);
-        //
-        //   var rdr = cmd.ExecuteReader() as MySqlDataReader;
-        //   int scenarioId = 0;
-        //   string scenarioName = "";
-        //
-        //   while(rdr.Read())
-        //   {
-        //     scenarioId = rdr.GetInt32(0);
-        //     scenarioName = rdr.GetString(1);
-        //   }
-        //
-        //   // Constructor below no longer includes a itemCategoryId parameter:
-        //   Scenario newScenario = new Scenario(scenarioName, scenarioId);
-        //   conn.Close();
-        //   if (conn != null)
-        //   {
-        //       conn.Dispose();
-        //   }
-        //
-        //   return newScenario;
-        // }
+        public static Scenario Find(int id)
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT * FROM scenarios WHERE id = (@searchId);";
+
+          MySqlParameter searchId = new MySqlParameter();
+          searchId.ParameterName = "@searchId";
+          searchId.Value = id;
+          cmd.Parameters.Add(searchId);
+
+          var rdr = cmd.ExecuteReader() as MySqlDataReader;
+          id = 0;
+          string scenario_name = "";
+          string prompt_text = "";
+          string opt_1_choice_text = "";
+          string opt_1_result_text = "";
+          int opt_1_health = 0;
+          int opt_1_money = 0;
+          int opt_1_mood = 0;
+          string opt_2_choice_text= "";
+          string opt_2_result_text= "";
+          int opt_2_health = 0;
+          int opt_2_money = 0;
+          int opt_2_mood = 0;
+          string opt_3_choice_text= "";
+          string opt_3_result_text= "";
+          int opt_3_health = 0;
+          int opt_3_money = 0;
+          int opt_3_mood = 0;
+
+          while(rdr.Read())
+          {
+            id = rdr.GetInt32(0);
+            scenario_name = rdr.GetString(1);
+            prompt_text = rdr.GetString(2);
+            opt_1_choice_text = rdr.GetString(3);
+            opt_1_result_text = rdr.GetString(4);
+            opt_1_health = rdr.GetInt32(5);
+            opt_1_money = rdr.GetInt32(6);
+            opt_1_mood = rdr.GetInt32(7);
+            opt_2_choice_text= rdr.GetString(8);
+            opt_2_result_text= rdr.GetString(9);
+            opt_2_health = rdr.GetInt32(10);
+            opt_2_money = rdr.GetInt32(11);
+            opt_2_mood = rdr.GetInt32(12);
+            opt_3_choice_text= rdr.GetString(13);
+            opt_3_result_text= rdr.GetString(14);
+            opt_3_health = rdr.GetInt32(15);
+            opt_3_money = rdr.GetInt32(16);
+            opt_3_mood = rdr.GetInt32(17);
+          }
+
+          // Constructor below no longer includes a itemCategoryId parameter:
+          Scenario newScenario = new Scenario(id, scenario_name, prompt_text, opt_1_choice_text, opt_1_result_text, opt_1_health, opt_1_money, opt_1_mood, opt_2_choice_text, opt_2_result_text, opt_2_health, opt_2_money, opt_2_mood, opt_3_choice_text, opt_3_result_text, opt_3_health, opt_3_money, opt_3_mood);
+          conn.Close();
+          if (conn != null)
+          {
+              conn.Dispose();
+          }
+
+          return newScenario;
+        }
       }
     }
