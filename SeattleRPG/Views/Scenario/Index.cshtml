@@ -1,26 +1,57 @@
-<h1>Name: @Model["currentPlayer"].GetName()</h1>
-<h1>Health: @Model["currentPlayer"].GetHealth()</h1>
-<h1>Mood: @Model["currentPlayer"].GetMood()</h1>
-<h1>Money: @Model["currentPlayer"].GetMoney()</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Seattle RPG</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/styles.css">
+    <script src="/scripts/jquery-3.3.1.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-md-12">
+          <h1>Welcome to our RPG game</h1>
+      </div>
 
+      <div id="game-window">
+        <div class="row">
+          <div class="col-md-6 scenario-image">
+            <img src="img/seattle-pixel.jpg">
+          </div>
+            <div class= "col-md-4 player-stats">
+              <div class="avatar">
+              </div>
+              <h1 class ="day">DAY 1 <hr></h1>
+              <h2 class ="health">HP: @Model["currentPlayer"].GetHealth()</h2> <br>
+              <h2 class ="money">Money: @Model["currentPlayer"].GetMoney()</h2> <br>
+              <h2 class ="mood">Mood: @Model["currentPlayer"].GetMood()</h2> <br>
+              <h4 class ="name">@Model["currentPlayer"].GetName()<hr></h4>
+            </div>
+          </div>
+          <br>
+          <div class="col-md-12 scenario-box">
+            <p>@Model["selectedScenario"].GetScenarioName()<hr></p>
+            <p>@Model["selectedScenario"].GetPromptText()</p>
+            <form action='/scenarios/@Model["selectedScenario"].GetScenarioId()' method='post'>
+              <input type="hidden" name="buttonVal" value="1" />
+              <button type='submit' id="choice1" value=1>@Model["selectedScenario"].GetOpt1ChoiceText()</button>
+            </form>
+            <form action='/scenarios/@Model["selectedScenario"].GetScenarioId()' method='post'>
+              <input type="hidden" name="buttonVal" value="2" />
+              <button type='submit' id="choice2" value=2>@Model["selectedScenario"].GetOpt2ChoiceText()</button>
+            </form>
+            <form action='/scenarios/@Model["selectedScenario"].GetScenarioId()' method='post'>
+              <input type="hidden" name="buttonVal" value="3" />
+              <button type='submit' id="choice3" value=3>@Model["selectedScenario"].GetOpt3ChoiceText()</button>
+            </form>
+          </div>
+          <br>
+          <div class="col-md-12 previous-scenario-box">
+            <p> Result <hr></p>
+            <p>Previous chosen scenario</p>
 
-
-  <ul>
-    <li>@Model["selectedScenario"].GetScenarioName()</li>
-  </ul>
-
-  <h2>@Model["selectedScenario"].GetPromptText()</h2>
-
-
-  <form action='/scenarios/@Model["selectedScenario"].GetScenarioId()' method='post'>
-    <input type="hidden" name="buttonVal" value="1" />
-    <button type='submit' id="choice1" value=1>@Model["selectedScenario"].GetOpt1ChoiceText()</button>
-  </form>
-  <form action='/scenarios/@Model["selectedScenario"].GetScenarioId()' method='post'>
-    <input type="hidden" name="buttonVal" value="2" />
-    <button type='submit' id="choice2" value=2>@Model["selectedScenario"].GetOpt2ChoiceText()</button>
-  </form>
-  <form action='/scenarios/@Model["selectedScenario"].GetScenarioId()' method='post'>
-    <input type="hidden" name="buttonVal" value="3" />
-    <button type='submit' id="choice3" value=3>@Model["selectedScenario"].GetOpt3ChoiceText()</button>
-  </form>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
