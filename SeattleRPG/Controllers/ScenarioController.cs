@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SeattleRPG.Models;
 using System.Collections.Generic;
+using System;
 
 namespace SeattleRPG.Controllers
 {
@@ -13,8 +14,41 @@ namespace SeattleRPG.Controllers
       //List<Scenario> allScenarios = Scenario.GetAll();
       Scenario selectedScenario=Scenario.Find(id);
       Player currentPlayer=Player.Find(0);
+
+
+      int previousChoice=currentPlayer.GetPreviousChoice();
+
+      string previousChoiceText="";
+
+
+      if (id==1){
+        //Scenario previousScenario=Scenario.Find(0);
+        model.Add("previousChoiceText", "This is where the consequences of your actions will show.");
+      } else{
+
+        if (previousChoice==1){
+          Scenario previousScenario=Scenario.Find(id-1);
+          previousChoiceText=previousScenario.GetOpt1ResultText();
+
+        } else if (previousChoice==2)
+        {
+          Scenario previousScenario=Scenario.Find(id-1);
+          previousChoiceText=previousScenario.GetOpt2ResultText();
+
+        } else if (previousChoice==3){
+          Scenario previousScenario=Scenario.Find(id-1);
+          previousChoiceText=previousScenario.GetOpt3ResultText();
+
+        } else{}
+
+
+        model.Add("previousChoiceText", previousChoiceText);
+      }
+
+
       model.Add("selectedScenario", selectedScenario);
       model.Add("currentPlayer", currentPlayer);
+      model.Add("day", id);
       // game.Add("allScenarios", allScenarios);
       return View(model);
 
@@ -27,6 +61,8 @@ namespace SeattleRPG.Controllers
       Player currentPlayer=Player.Find(0);
       Scenario selectedScenario=Scenario.Find(id);
       int choice=int.Parse(Request.Form["buttonVal"]);
+      currentPlayer.SetPreviousChoice(choice);
+
 
       int currentHealth=currentPlayer.GetHealth();
       int currentMood=currentPlayer.GetMood();
@@ -56,7 +92,7 @@ namespace SeattleRPG.Controllers
       currentMood=currentMood+moodChange;
       currentMoney=currentMoney+moneyChange;
 
-      currentPlayer.UpdatePlayerProperties(playerName, currentHealth, currentMood, currentMoney);
+      currentPlayer.UpdatePlayerProperties(playerName, currentHealth, currentMood, currentMoney, choice);
 
       return RedirectToAction("Index", "Scenario", new { id = id+1});
     }

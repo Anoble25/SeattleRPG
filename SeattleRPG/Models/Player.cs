@@ -11,14 +11,16 @@ namespace SeattleRPG.Models
     private int _mood;
     private int _money;
     private int _id;
+    private int _previous_choice;
 
-    public Player(string Name, int Health=100, int Mood=100, int Money=1000, int id = 0)
+    public Player(string Name, int Health=100, int Mood=50, int Money=300, int id = 0, int previous_choice=0)
     {
       _name = Name;
       _health = Health;
       _mood = Mood;
       _money = Money;
       _id = id;
+      _previous_choice=previous_choice;
     }
     public string GetName()
     {
@@ -41,6 +43,15 @@ namespace SeattleRPG.Models
     {
       return _id;
     }
+    public int GetPreviousChoice()
+    {
+      return _previous_choice;
+    }
+
+    public void SetPreviousChoice(int previous_choice)
+    {
+      _previous_choice=previous_choice;
+    }
 
 
     public static List<Player> GetAllPlayers()
@@ -58,6 +69,7 @@ namespace SeattleRPG.Models
         int playerHealth = rdr.GetInt32(2);
         int playerMood = rdr.GetInt32(3);
         int playerMoney = rdr.GetInt32(4);
+
         Player newPlayer = new Player(playerName, playerHealth, playerMood, playerMoney, playerId);
         allPlayers.Add(newPlayer);
       }
@@ -103,6 +115,7 @@ namespace SeattleRPG.Models
       int playerHealth = 0;
       int playerMood = 0;
       int playerMoney = 0;
+      int previousChoice = 0;
 
       while(rdr.Read())
       {
@@ -111,8 +124,9 @@ namespace SeattleRPG.Models
         playerHealth = rdr.GetInt32(2);
         playerMood = rdr.GetInt32(3);
         playerMoney = rdr.GetInt32(4);
+        previousChoice = rdr.GetInt32(5);
       }
-      Player newPlayer = new Player(playerName, playerHealth, playerMood, playerMoney, playerId);
+      Player newPlayer = new Player(playerName, playerHealth, playerMood, playerMoney, playerId, previousChoice);
       conn.Close();
       if (conn != null)
       {
@@ -121,24 +135,26 @@ namespace SeattleRPG.Models
       return newPlayer;
     }
 
-    public void UpdatePlayerProperties(string newName, int newHealth, int newMood, int newMoney)
+    public void UpdatePlayerProperties(string newName, int newHealth, int newMood, int newMoney, int previous_choice)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"UPDATE current_player SET name = @newName, health = @newHealth, mood = @newMood, money = @newMoney WHERE id = @searchId;";
+      cmd.CommandText = @"UPDATE current_player SET name = @newName, health = @newHealth, mood = @newMood, money = @newMoney, previous_choice=@previousChoice WHERE id = @searchId;";
 
       cmd.Parameters.Add(new MySqlParameter("@searchId", _id));
       cmd.Parameters.Add(new MySqlParameter("@newName", newName));
       cmd.Parameters.Add(new MySqlParameter("@newHealth", newHealth));
       cmd.Parameters.Add(new MySqlParameter("@newMood", newMood));
       cmd.Parameters.Add(new MySqlParameter("@newMoney", newMoney));
+      cmd.Parameters.Add(new MySqlParameter("@previousChoice", previous_choice));
 
       cmd.ExecuteNonQuery();
       _name = newName;
       _health = newHealth;
       _mood = newMood;
       _money = newMoney;
+      _previous_choice=previous_choice;
       conn.Close();
       if (conn != null)
       {

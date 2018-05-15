@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 15, 2018 at 11:08 PM
+-- Generation Time: May 16, 2018 at 12:23 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -33,15 +33,16 @@ CREATE TABLE `current_player` (
   `name` varchar(255) NOT NULL,
   `health` int(11) NOT NULL,
   `mood` int(11) NOT NULL,
-  `money` int(11) NOT NULL
+  `money` int(11) NOT NULL,
+  `previous_choice` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `current_player`
 --
 
-INSERT INTO `current_player` (`id`, `name`, `health`, `mood`, `money`) VALUES
-(0, 'Alex', 21, 114, 3826);
+INSERT INTO `current_player` (`id`, `name`, `health`, `mood`, `money`, `previous_choice`) VALUES
+(0, 'Alex', 103, 140, 1545, 1);
 
 -- --------------------------------------------------------
 
@@ -99,7 +100,8 @@ INSERT INTO `scenarios` (`id`, `scenario_name`, `prompt_text`, `opt_1_choice_tex
 (22, '\"Late for Interview\"', '\"You are late to your interview\"', 'Still show up quickly', '\"You got the job, because all the other candidates showed up hung over [Health = 0, Money = 500, Mood = 100]\"', 0, 500, 100, '\"Show up but take your time\"', '\"Luckily even even though the interviewer had another appointment, they still decided to interview you, Well it helps when the next person doesn\'t show. [Health = 0, Money = 500 , Mood = 60]\"', 0, 500, 60, '\"Well, I might as well not go\"', '\"You decided to get drunk with your friends [Health = -40, Money = -75, Mood = 5]\"', -40, -75, 5),
 (23, '\"Lottery Machine\"', '\"Play Lottery\"', '\"Buy $20 Ticket\"', '\"You lost, better luck next time [Health = 0, Money = -20, Mood = -10]\"', 0, -20, -10, '\"Buy $10 Ticket\"', '\"You won $60 [Health = 0, Money = 60 , Mood = 20]\"', 0, 60, 20, '\"Buy $30 Ticket\"', '\"You won $80 [Health = 0, Money = 75, Mood = 20]\"', 0, 75, 20),
 (24, '\"New Shoes\"', '\"You need new shoes\"', '\"Buy some cheap shoes from GoodWill\"', '\"The shoes you just bought fell apart later in the afternoon and you decided to buy another pair at Nordstrom [Health = -1, Money = -95, Mood = -5]\"', -1, -95, -5, '\"Buy a pair of shoes at Sears\"', '\"Lucky you, found a pair on sale\" [Health = 2, Money = -40 , Mood = 15]\"', 2, -40, 15, '\"I will just wear my flip flops everywhere since it is summer\"', '\"Well, maybe not ideal. But probably should buy something before winter. [Health = 0, Money = 0, Mood = -15]\"', 0, 0, -15),
-(25, '\"New career at Facebook\"', '\"You got a job at Facebook\"', '\"Accept job in Seattle\"', '\"You are making $120,000 a year and paying $2,500 a month for rent at a apartment [Health = 0, Money = 9,500, Mood = 100]\"', 0, 9500, 100, '\"Accept job in California\"', '\"You are making $150,000 and paying $3,500 a month for rent at a apartment [Health = 0, Money = 10,500 , Mood = 100]\"', 0, 10500, 100, '\"Accept job in Texas\"', '\"Accept job in Texas [Health = 0, Money = 2,500, Mood = 60]\"', 0, 2500, 60);
+(25, '\"New career at Facebook\"', '\"You got a job at Facebook\"', '\"Accept job in Seattle\"', '\"You are making $120,000 a year and paying $2,500 a month for rent at a apartment [Health = 0, Money = 9,500, Mood = 100]\"', 0, 9500, 100, '\"Accept job in California\"', '\"You are making $150,000 and paying $3,500 a month for rent at a apartment [Health = 0, Money = 10,500 , Mood = 100]\"', 0, 10500, 100, '\"Accept job in Texas\"', '\"Accept job in Texas [Health = 0, Money = 2,500, Mood = 60]\"', 0, 2500, 60),
+(26, 'event zero', 'this is before the game starts', 'Consequences will be shown here.', 'Consequences will be shown here.', 0, 0, 0, 'Consequences will be shown here.', 'Consequences will be shown here.', 0, 0, 0, 'Consequences will be shown here.', 'Consequences will be shown here.', 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -119,7 +121,7 @@ ALTER TABLE `scenarios`
 -- AUTO_INCREMENT for table `scenarios`
 --
 ALTER TABLE `scenarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
