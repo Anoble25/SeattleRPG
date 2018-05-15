@@ -4,10 +4,10 @@
 @if (Model.Count != 0)
 {
   <ul>
-    @foreach (var scenario in Model["allScenarios"])
+    @foreach (var scenario in Model)
     {
       <li>@scenario.GetScenarioName()</li>
     }
   </ul>
-  <h1>@Model["currentPlayer"].GetName()</h1>
+  <h1>@Model.GetScenarioName()</h1>
 }

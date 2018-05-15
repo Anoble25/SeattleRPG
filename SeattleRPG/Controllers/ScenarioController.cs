@@ -6,8 +6,8 @@ namespace SeattleRPG.Controllers
 {
   public class ScenarioController : Controller
   {
-    [HttpPost("/scenario")]
-    public ActionResult Index(int id)
+    [HttpGet("/scenarios")]
+    public ActionResult Index()
     {
       List<Scenario> allScenarios = Scenario.GetAll();
       // game.Add("allScenarios", allScenarios);
