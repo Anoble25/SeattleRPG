@@ -29,7 +29,7 @@ namespace SeattleRPG.Controllers
     public ActionResult GameOver()
     {
         // Player currentPlayer = new Player
-        return View();
+        return View(Highscore.GetHighestScore());
     }
   }
 }

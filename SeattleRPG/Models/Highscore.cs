@@ -78,7 +78,7 @@ namespace SeattleRPG.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM high_score ORDER BY id DESC LIMIT 5;";
+      cmd.CommandText = @"SELECT * FROM high_score ORDER BY score DESC LIMIT 5;";
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
       while(rdr.Read())
       {

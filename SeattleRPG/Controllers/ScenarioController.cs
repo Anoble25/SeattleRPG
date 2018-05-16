@@ -66,7 +66,7 @@ namespace SeattleRPG.Controllers
     {
       Highscore newHighscore = new Highscore(name, score);
       newHighscore.SaveScore();
-      return RedirectToAction("GameOver", "Player", newHighscore);
+      return RedirectToAction("GameOver", "Player");
     }
   }
 }
