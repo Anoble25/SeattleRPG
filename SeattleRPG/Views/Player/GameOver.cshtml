@@ -1,0 +1,9 @@
+@using SeattleRPG.Models
+
+<h1>Highest scores are: </h1>
+@foreach(var score in Model)
+{
+  <h1>@score.GetPlayerName(), @score.GetScore()</h1>
+}
+
+<h1><a href="/">Homepage</a></h1>
