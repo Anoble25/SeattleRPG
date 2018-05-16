@@ -137,8 +137,38 @@ namespace SeattleRPG.Controllers
 
       currentPlayer.UpdatePlayerProperties(playerName, currentHealth, currentMood, currentMoney, choice);
 
-      return RedirectToAction("Index", "Scenario", new { id = id+1});
+      if (currentMood<0||currentMoney<0||currentHealth<0){
+        return RedirectToAction("LoseGame", "Scenario", new { id = id});
+      } else if (id==30){
+        return RedirectToAction("Victory", "Scenario");
+      }
+      else{
+        return RedirectToAction("Index", "Scenario", new { id = id+1});
+      }
     }
+
+    [HttpGet("/scenarios/victory")]
+    public ActionResult Victory()
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Player currentPlayer=Player.Find(0);
+      model.Add("currentPlayer", currentPlayer);
+
+      return View(model);
+    }
+
+    [HttpGet("/scenarios/losegame")]
+    public ActionResult LoseGame(int id)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Player currentPlayer=Player.Find(0);
+      string day=id.ToString();
+      model.Add("currentPlayer", currentPlayer);
+      model.Add("day", day);
+
+      return View(model);
+    }
+
 
     [HttpPost("/player/{name}/{score}/end")]
     public ActionResult EndOfTheGame(string name, int score)
