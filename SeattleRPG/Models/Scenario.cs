@@ -24,9 +24,10 @@ namespace SeattleRPG.Models
         private int _opt_3_health;
         private int _opt_3_money;
         private int _opt_3_mood;
+        private string _img_src;
 
 
-        public Scenario(int id, string scenario_name, string prompt_text, string opt_1_choice_text, string opt_1_result_text, int opt_1_health, int opt_1_money, int opt_1_mood, string opt_2_choice_text, string opt_2_result_text, int opt_2_health, int opt_2_money, int opt_2_mood, string opt_3_choice_text, string opt_3_result_text, int opt_3_health, int opt_3_money, int opt_3_mood)
+        public Scenario(int id, string scenario_name, string prompt_text, string opt_1_choice_text, string opt_1_result_text, int opt_1_health, int opt_1_money, int opt_1_mood, string opt_2_choice_text, string opt_2_result_text, int opt_2_health, int opt_2_money, int opt_2_mood, string opt_3_choice_text, string opt_3_result_text, int opt_3_health, int opt_3_money, int opt_3_mood, string img_src)
         {
           _id=id;
           _scenario_name=scenario_name;
@@ -46,6 +47,7 @@ namespace SeattleRPG.Models
           _opt_3_health=opt_3_health;
           _opt_3_money=opt_3_money;
           _opt_3_mood=opt_3_mood;
+          _img_src=img_src;
         }
 
         public int GetScenarioId()
@@ -123,6 +125,9 @@ namespace SeattleRPG.Models
         {
           return _opt_3_mood;
         }
+        public string GetImgSrc(){
+          return _img_src;
+        }
 
         public static List<Scenario> GetAll()
         {
@@ -156,8 +161,9 @@ namespace SeattleRPG.Models
             int opt_3_health = rdr.GetInt32(15);
             int opt_3_money = rdr.GetInt32(16);
             int opt_3_mood = rdr.GetInt32(17);
+            string img_src=rdr.GetString(18);
 
-            Scenario newScenario = new Scenario(id, scenario_name, prompt_text, opt_1_choice_text, opt_1_result_text, opt_1_health, opt_1_money, opt_1_mood, opt_2_choice_text, opt_2_result_text, opt_2_health, opt_2_money, opt_2_mood, opt_3_choice_text, opt_3_result_text, opt_3_health, opt_3_money, opt_3_mood);
+            Scenario newScenario = new Scenario(id, scenario_name, prompt_text, opt_1_choice_text, opt_1_result_text, opt_1_health, opt_1_money, opt_1_mood, opt_2_choice_text, opt_2_result_text, opt_2_health, opt_2_money, opt_2_mood, opt_3_choice_text, opt_3_result_text, opt_3_health, opt_3_money, opt_3_mood, img_src);
 
             allScenarios.Add(newScenario);
           }
@@ -201,6 +207,8 @@ namespace SeattleRPG.Models
           int opt_3_health = 0;
           int opt_3_money = 0;
           int opt_3_mood = 0;
+          string img_src="";
+
 
           while(rdr.Read())
           {
@@ -222,10 +230,11 @@ namespace SeattleRPG.Models
             opt_3_health = rdr.GetInt32(15);
             opt_3_money = rdr.GetInt32(16);
             opt_3_mood = rdr.GetInt32(17);
+            img_src=rdr.GetString(18);
           }
 
           // Constructor below no longer includes a itemCategoryId parameter:
-          Scenario newScenario = new Scenario(id, scenario_name, prompt_text, opt_1_choice_text, opt_1_result_text, opt_1_health, opt_1_money, opt_1_mood, opt_2_choice_text, opt_2_result_text, opt_2_health, opt_2_money, opt_2_mood, opt_3_choice_text, opt_3_result_text, opt_3_health, opt_3_money, opt_3_mood);
+          Scenario newScenario = new Scenario(id, scenario_name, prompt_text, opt_1_choice_text, opt_1_result_text, opt_1_health, opt_1_money, opt_1_mood, opt_2_choice_text, opt_2_result_text, opt_2_health, opt_2_money, opt_2_mood, opt_3_choice_text, opt_3_result_text, opt_3_health, opt_3_money, opt_3_mood, img_src);
           conn.Close();
           if (conn != null)
           {
