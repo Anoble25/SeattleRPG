@@ -5,6 +5,8 @@
     <title>Seattle RPG</title>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="stylesheet" href="~/css/animate.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css"> -->
     <script src="/scripts/jquery-3.3.1.js"></script>
   </head>
   <body>
@@ -19,13 +21,19 @@
             <img src="/img/@Model["selectedScenario"].GetImgSrc()">
           </div>
             <div class= "col-md-4 player-stats">
-              <div class="avatar">
-              </div>
+
               <h1 class ="day">DAY @Model["day"]<hr></h1>
-              <h2 class ="health">HP: @Model["currentPlayer"].GetHealth() @Model["healthChange"]</h2> <br>
-              <h2 class ="money">Money: @Model["currentPlayer"].GetMoney() @Model["moneyChange"]</h2> <br>
-              <h2 class ="mood">Mood: @Model["currentPlayer"].GetMood() @Model["moodChange"]</h2> <br>
-              <h4 class ="name">@Model["currentPlayer"].GetName()<hr></h4>
+              <h2 class ="health animated pulse">HP: @Model["currentPlayer"].GetHealth()
+              <span class ="animated fadeOutUp changes"> @Model["healthChange"]</span></h2><br>
+
+              <h2 class ="money animated pulse">Money: @Model["currentPlayer"].GetMoney()
+              <span class="animated fadeOutUp changes">@Model["moneyChange"]</span> </h2><br>
+
+              <h2 class ="mood animated pulse">Mood: @Model["currentPlayer"].GetMood()
+              <span class="animated fadeOutUp changes"> @Model["moodChange"]</span> <br>
+
+              <h4 class ="name animated pulse">@Model["currentPlayer"].GetName()</h4>
+              <hr>
             </div>
           </div>
           <br>
