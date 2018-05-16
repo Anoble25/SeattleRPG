@@ -16,12 +16,12 @@
       <div id="game-window">
         <div class="row">
           <div class="col-md-6 scenario-image">
-            <img src="img/seattle-pixel.jpg">
+            <img src="/img/seattle-pixel.jpg">
           </div>
             <div class= "col-md-4 player-stats">
               <div class="avatar">
               </div>
-              <h1 class ="day">DAY 1 <hr></h1>
+              <h1 class ="day">DAY @Model["day"]<hr></h1>
               <h2 class ="health">HP: @Model["currentPlayer"].GetHealth()</h2> <br>
               <h2 class ="money">Money: @Model["currentPlayer"].GetMoney()</h2> <br>
               <h2 class ="mood">Mood: @Model["currentPlayer"].GetMood()</h2> <br>
@@ -48,7 +48,7 @@
           <br>
           <div class="col-md-12 previous-scenario-box">
             <p> Result <hr></p>
-            <p>Previous chosen scenario</p>
+            <p>@Model["previousChoiceText"]</p>
 
             <form action='/player/@Model["currentPlayer"].GetName()/@Model["currentPlayer"].GetMoney()/end' method='post'>
               <button type='submit'>End the game!</button>
