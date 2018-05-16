@@ -25,5 +25,11 @@ namespace SeattleRPG.Controllers
         return RedirectToAction("Index", "Scenario", new { id = 1 });
     }
 
+    [HttpGet("/player/end")]
+    public ActionResult GameOver()
+    {
+        // Player currentPlayer = new Player
+        return View();
+    }
   }
 }

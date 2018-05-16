@@ -42,7 +42,6 @@ namespace SeattleRPG.Models
       return _id;
     }
 
-
     public static List<Player> GetAllPlayers()
     {
       List<Player> allPlayers = new List<Player> {};
@@ -68,26 +67,7 @@ namespace SeattleRPG.Models
       }
       return allPlayers;
     }
-    // public void Save()
-    // {
-    //   MySqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   var cmd = conn.CreateCommand() as MySqlCommand;
-    //   cmd.CommandText = @"INSERT INTO players (name, health, mood, money) VALUES (@thisPlayerName, @thisPlayerHealth, @thisPlayerMood, @thisPlayerMoney);";
-    //   cmd.Parameters.Add(new MySqlParameter("@thisPlayerName", _name));
-    //   // cmd.Parameters.Add(new MySqlParameter("@thisPlayerHealth", _health));
-    //   // cmd.Parameters.Add(new MySqlParameter("@thisPlayerMood", _mood);
-    //   // cmd.Parameters.Add(new MySqlParameter("@thisPlayerMoney", _money));
-    //
-    //   cmd.ExecuteNonQuery();
-    //   _id = (int) cmd.LastInsertedId;
-    //
-    //   conn.Close();
-    //   if (conn != null)
-    //   {
-    //     conn.Dispose();
-    //   }
-    // }
+
     public static Player Find(int id)
     {
       MySqlConnection conn = DB.Connection();

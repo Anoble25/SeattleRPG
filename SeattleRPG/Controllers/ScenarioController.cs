@@ -60,5 +60,13 @@ namespace SeattleRPG.Controllers
 
       return RedirectToAction("Index", "Scenario", new { id = id+1});
     }
+
+    [HttpPost("/player/{name}/{score}/end")]
+    public ActionResult EndOfTheGame(string name, int score)
+    {
+      Highscore newHighscore = new Highscore(name, score);
+      newHighscore.SaveScore();
+      return RedirectToAction("GameOver", "Player", newHighscore);
+    }
   }
 }
