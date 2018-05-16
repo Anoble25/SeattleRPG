@@ -1,5 +1,13 @@
 @using SeattleRPG.Models;
+@{
+  Layout = "_Layout";
+}
 
+<meta charset="utf-8">
+<title>Seattle RPG</title>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<link rel="stylesheet" href="~/css/styles.css">
+<script src="/scripts/jquery-3.3.1.js"></script>
 <form action="/player" method="post">
   <label for="player-name">Please enter your name:</label>
   <input id="player-name" name="player-name" type="text">
