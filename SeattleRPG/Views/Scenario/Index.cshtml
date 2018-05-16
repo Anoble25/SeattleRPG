@@ -22,9 +22,9 @@
               <div class="avatar">
               </div>
               <h1 class ="day">DAY @Model["day"]<hr></h1>
-              <h2 class ="health">HP: @Model["currentPlayer"].GetHealth()</h2> <br>
-              <h2 class ="money">Money: @Model["currentPlayer"].GetMoney()</h2> <br>
-              <h2 class ="mood">Mood: @Model["currentPlayer"].GetMood()</h2> <br>
+              <h2 class ="health">HP: @Model["currentPlayer"].GetHealth() @Model["healthChange"]</h2> <br>
+              <h2 class ="money">Money: @Model["currentPlayer"].GetMoney() @Model["moneyChange"]</h2> <br>
+              <h2 class ="mood">Mood: @Model["currentPlayer"].GetMood() @Model["moodChange"]</h2> <br>
               <h4 class ="name">@Model["currentPlayer"].GetName()<hr></h4>
             </div>
           </div>

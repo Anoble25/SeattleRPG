@@ -15,8 +15,13 @@ namespace SeattleRPG.Controllers
       Scenario selectedScenario=Scenario.Find(id);
       Player currentPlayer=Player.Find(0);
 
-
       int previousChoice=currentPlayer.GetPreviousChoice();
+      int healthChange=0;
+      int moodChange=0;
+      int moneyChange=0;
+      string healthChangeString="";
+      string moodChangeString="";
+      string moneyChangeString="";
 
       string previousChoiceText="";
 
@@ -24,28 +29,66 @@ namespace SeattleRPG.Controllers
       if (id==1){
         //Scenario previousScenario=Scenario.Find(0);
         model.Add("previousChoiceText", "This is where the consequences of your actions will show.");
+
       } else{
 
         if (previousChoice==1){
           Scenario previousScenario=Scenario.Find(id-1);
           previousChoiceText=previousScenario.GetOpt1ResultText();
-
+          healthChange=previousScenario.GetOpt1Health();
+          moodChange=previousScenario.GetOpt1Mood();
+          moneyChange=previousScenario.GetOpt1Money();
         } else if (previousChoice==2)
         {
           Scenario previousScenario=Scenario.Find(id-1);
           previousChoiceText=previousScenario.GetOpt2ResultText();
+          healthChange=previousScenario.GetOpt2Health();
+          moodChange=previousScenario.GetOpt2Mood();
+          moneyChange=previousScenario.GetOpt2Money();
 
         } else if (previousChoice==3){
           Scenario previousScenario=Scenario.Find(id-1);
           previousChoiceText=previousScenario.GetOpt3ResultText();
-
+          healthChange=previousScenario.GetOpt3Health();
+          moodChange=previousScenario.GetOpt3Mood();
+          moneyChange=previousScenario.GetOpt3Money();
         } else{}
 
+        if (healthChange==0){
+          healthChangeString="No Change";
+        } else if (healthChange<0){
+          healthChangeString=""+healthChange.ToString();
+        } else if (healthChange>0){
+          healthChangeString="+"+healthChange.ToString();
+        } else{
+          Console.WriteLine("error calculating health change string");
+        }
 
+        if (moodChange==0){
+          moodChangeString="No Change";
+        } else if (moodChange<0){
+          moodChangeString=""+moodChange.ToString();
+        } else if (moodChange>0){
+          moodChangeString="+"+moodChange.ToString();
+        } else{
+          Console.WriteLine("error calculating mood change string");
+        }
+
+        if (moneyChange==0){
+          moneyChangeString="No Change";
+        } else if (moneyChange<0){
+          moneyChangeString=""+moneyChange.ToString();
+        } else if (moneyChange>0){
+          moneyChangeString="+"+moneyChange.ToString();
+        } else{
+          Console.WriteLine("error calculating money change string");
+        }
         model.Add("previousChoiceText", previousChoiceText);
       }
 
-
+      model.Add("healthChange", healthChangeString);
+      model.Add("moodChange", moodChangeString);
+      model.Add("moneyChange", moneyChangeString);
       model.Add("selectedScenario", selectedScenario);
       model.Add("currentPlayer", currentPlayer);
       model.Add("day", id);
