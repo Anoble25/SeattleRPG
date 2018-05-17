@@ -127,6 +127,7 @@ namespace SeattleRPG.Controllers
       int healthChange=0;
       int moodChange=0;
       int moneyChange=0;
+      int rentPayment=currentPlayer.GetMoney();
 
       if (choice==1){
         healthChange=selectedScenario.GetOpt1Health();
@@ -152,7 +153,14 @@ namespace SeattleRPG.Controllers
       if (currentMood<0||currentMoney<0||currentHealth<0){
         return RedirectToAction("LoseGame", "Scenario", new { id = id});
       } else if (id==30){
-        return RedirectToAction("Victory", "Scenario");
+
+
+        if (rentPayment>=1500){
+          return RedirectToAction("Victory", "Scenario");
+        }
+        else{
+          return RedirectToAction("LoseGame", "Scenario", new { id = id});
+        }
       }
       else{
         return RedirectToAction("Index", "Scenario", new { id = id+1});
