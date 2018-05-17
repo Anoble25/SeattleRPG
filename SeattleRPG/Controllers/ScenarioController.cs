@@ -164,7 +164,14 @@ namespace SeattleRPG.Controllers
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
       Player currentPlayer=Player.Find(0);
+      string name=currentPlayer.GetName();
+      int score=currentPlayer.GetMoney();
+
+
+      Highscore newHighscore=new Highscore(name, score);
+      newHighscore.SaveScore();
       model.Add("currentPlayer", currentPlayer);
+
 
       return View(model);
     }
@@ -187,7 +194,7 @@ namespace SeattleRPG.Controllers
     {
       Highscore newHighscore = new Highscore(name, score);
       newHighscore.SaveScore();
-      return RedirectToAction("GameOver", "Player");
+      return RedirectToAction("Index", "Player");
     }
   }
 }

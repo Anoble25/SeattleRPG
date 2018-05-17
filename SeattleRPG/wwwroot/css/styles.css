@@ -198,3 +198,16 @@ input::placeholder {
   font-size: 1.2em;
   text-align: center;
 }
+
+#showHighscores {
+  color: #245fbf;
+  font-style: italic;
+  background: rgba(255, 0, 0, 0.2);
+  text-shadow:1px 1px 0 #000,1px 1px 0 #000,1px 1px 0 #000,1px 1px 0 #000;
+}
+
+#showHighscores h4{
+  color: #23bf7b;
+  font-weight: bolder;
+  text-decoration: underline;
+}

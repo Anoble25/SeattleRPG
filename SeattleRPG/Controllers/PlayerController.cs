@@ -9,7 +9,7 @@ namespace SeattleRPG.Controllers
     [HttpGet("/player")]
     public ActionResult Index()
     {
-        return View();
+        return View(Highscore.GetHighestScore());
     }
 
     [HttpPost("/player")]
@@ -24,12 +24,12 @@ namespace SeattleRPG.Controllers
 //save here
         return RedirectToAction("Index", "Scenario", new { id = 1 });
     }
-
-    [HttpGet("/player/end")]
-    public ActionResult GameOver()
-    {
-        // Player currentPlayer = new Player
-        return View(Highscore.GetHighestScore());
-    }
+    //
+    // [HttpGet("/player/end")]
+    // public ActionResult Index()
+    // {
+    //     // Player currentPlayer = new Player
+    //     // return View(Highscore.GetHighestScore());
+    // }
   }
 }

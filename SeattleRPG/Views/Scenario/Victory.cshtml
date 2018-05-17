@@ -14,8 +14,20 @@
   <body>
     <div class="container">
       <div class="row col-md-12">
-        <h3> Congratulations, @Model["currentPlayer"].GetName() ! <br> You survived for over 30 days in Seattle. <br> Your final score is: @Model["currentPlayer"].GetMoney() <br><br><img class="victory-image" src="/img/victory.jpeg"> <br><br><a href="/player"><img class="newgameimg" src="/img/newgame.png"></a></h3>
+        <h3> Congratulations, @Model["currentPlayer"].GetName() ! <br> You survived for over 30 days in Seattle. <br> Your final score is: @Model["currentPlayer"].GetMoney() <br><br><img class="victory-image" src="/img/victory.jpeg">
+          <br><br>
+          <form id="saveScore" action='/player/@Model["currentPlayer"].GetName()/@Model["currentPlayer"].GetMoney()/end' method='post'>
+            <button type='submit'>Save result and start new game!</button>
+          </form>
+          <!-- <div id="afterScoreSaved">
+            <a href="/player"><img class="newgameimg" src="/img/newgame.png"></a>
+          </div> -->
+
+        </h3>
+
       </div>
     </div>
+
+
   </body>
 </html>
