@@ -12,8 +12,9 @@ namespace SeattleRPG.Models
     private int _money;
     private int _id;
     private int _previous_choice;
+    private int _previous_scenario_id;
 
-    public Player(string Name, int Health=100, int Mood=50, int Money=300, int id = 0, int previous_choice=0)
+    public Player(string Name, int Health=100, int Mood=50, int Money=300, int id = 0, int previous_choice=0, int previous_scenario_id=0)
     {
       _name = Name;
       _health = Health;
@@ -21,6 +22,7 @@ namespace SeattleRPG.Models
       _money = Money;
       _id = id;
       _previous_choice=previous_choice;
+      _previous_scenario_id=previous_scenario_id;
     }
     public string GetName()
     {
@@ -51,6 +53,16 @@ namespace SeattleRPG.Models
     public void SetPreviousChoice(int previous_choice)
     {
       _previous_choice=previous_choice;
+    }
+
+    public int GetPreviousScenarioId()
+    {
+      return _previous_scenario_id;
+    }
+
+    public void SetPreviousScenarioId(int previous_scenario_id)
+    {
+      _previous_scenario_id=previous_scenario_id;
     }
 
     public static List<Player> GetAllPlayers()
@@ -96,6 +108,7 @@ namespace SeattleRPG.Models
       int playerMood = 0;
       int playerMoney = 0;
       int previousChoice = 0;
+      int previousScenarioId=0;
 
       while(rdr.Read())
       {
@@ -105,8 +118,9 @@ namespace SeattleRPG.Models
         playerMood = rdr.GetInt32(3);
         playerMoney = rdr.GetInt32(4);
         previousChoice = rdr.GetInt32(5);
+        previousScenarioId=rdr.GetInt32(6);
       }
-      Player newPlayer = new Player(playerName, playerHealth, playerMood, playerMoney, playerId, previousChoice);
+      Player newPlayer = new Player(playerName, playerHealth, playerMood, playerMoney, playerId, previousChoice, previousScenarioId);
       conn.Close();
       if (conn != null)
       {
@@ -115,12 +129,12 @@ namespace SeattleRPG.Models
       return newPlayer;
     }
 
-    public void UpdatePlayerProperties(string newName, int newHealth, int newMood, int newMoney, int previous_choice)
+    public void UpdatePlayerProperties(string newName, int newHealth, int newMood, int newMoney, int previous_choice, int previous_scenario_id)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"UPDATE current_player SET name = @newName, health = @newHealth, mood = @newMood, money = @newMoney, previous_choice=@previousChoice WHERE id = @searchId;";
+      cmd.CommandText = @"UPDATE current_player SET name = @newName, health = @newHealth, mood = @newMood, money = @newMoney, previous_choice=@previousChoice, previous_scenario_id=@previousScenarioId WHERE id = @searchId;";
 
       cmd.Parameters.Add(new MySqlParameter("@searchId", _id));
       cmd.Parameters.Add(new MySqlParameter("@newName", newName));
@@ -128,6 +142,8 @@ namespace SeattleRPG.Models
       cmd.Parameters.Add(new MySqlParameter("@newMood", newMood));
       cmd.Parameters.Add(new MySqlParameter("@newMoney", newMoney));
       cmd.Parameters.Add(new MySqlParameter("@previousChoice", previous_choice));
+      cmd.Parameters.Add(new MySqlParameter("@previousScenarioId", previous_scenario_id));
+
 
       cmd.ExecuteNonQuery();
       _name = newName;
@@ -135,6 +151,7 @@ namespace SeattleRPG.Models
       _mood = newMood;
       _money = newMoney;
       _previous_choice=previous_choice;
+      _previous_scenario_id=previous_scenario_id;
       conn.Close();
       if (conn != null)
       {
@@ -154,6 +171,26 @@ namespace SeattleRPG.Models
 
       cmd.ExecuteNonQuery();
       _name = newName;
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
+    public void UpdatePreviousScenarioId(int newScenarioId)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE current_player SET previous_scenario_id = @newScenarioId WHERE id = 0;";
+
+      cmd.Parameters.Add(new MySqlParameter("@newScenarioId", newScenarioId));
+
+
+      cmd.ExecuteNonQuery();
+      _previous_scenario_id = newScenarioId;
 
       conn.Close();
       if (conn != null)

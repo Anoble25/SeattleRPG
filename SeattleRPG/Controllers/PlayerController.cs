@@ -17,8 +17,8 @@ namespace SeattleRPG.Controllers
     {
 
         string playerName = Request.Form["player-name"];
-        Player newPlayer = new Player(playerName, 100, 50, 300, 0);
-        newPlayer.UpdatePlayerProperties(playerName, 100, 50, 300, 0);
+        Player newPlayer = new Player(playerName, 100, 50, 300, 0, 0);
+        newPlayer.UpdatePlayerProperties(playerName, 100, 50, 300, 0, 0);
 
         //model.Add("currentPlayer", newPlayer);
 //save here

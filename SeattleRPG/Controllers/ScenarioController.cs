@@ -11,11 +11,17 @@ namespace SeattleRPG.Controllers
     public ActionResult Index(int id)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
-      //List<Scenario> allScenarios = Scenario.GetAll();
-      Scenario selectedScenario=Scenario.Find(id);
+
+      Random rnd = new Random();
+      int randomId=rnd.Next(1,50);
+
+      Scenario selectedScenario=Scenario.Find(randomId);
       Player currentPlayer=Player.Find(0);
 
       int previousChoice=currentPlayer.GetPreviousChoice();
+      int previousScenarioId=currentPlayer.GetPreviousScenarioId();
+
+      //Console.WriteLine("Previous Scenario ID on Get = "+previousScenarioId+"Day Id= "+id);
       int healthChange=0;
       int moodChange=0;
       int moneyChange=0;
@@ -26,6 +32,7 @@ namespace SeattleRPG.Controllers
       string previousChoiceText="";
 
 
+
       if (id==1){
         //Scenario previousScenario=Scenario.Find(0);
         model.Add("previousChoiceText", "This is where the consequences of your actions will show.");
@@ -33,21 +40,21 @@ namespace SeattleRPG.Controllers
       } else{
 
         if (previousChoice==1){
-          Scenario previousScenario=Scenario.Find(id-1);
+          Scenario previousScenario=Scenario.Find(previousScenarioId);
           previousChoiceText=previousScenario.GetOpt1ResultText();
           healthChange=previousScenario.GetOpt1Health();
           moodChange=previousScenario.GetOpt1Mood();
           moneyChange=previousScenario.GetOpt1Money();
         } else if (previousChoice==2)
         {
-          Scenario previousScenario=Scenario.Find(id-1);
+          Scenario previousScenario=Scenario.Find(previousScenarioId);
           previousChoiceText=previousScenario.GetOpt2ResultText();
           healthChange=previousScenario.GetOpt2Health();
           moodChange=previousScenario.GetOpt2Mood();
           moneyChange=previousScenario.GetOpt2Money();
 
         } else if (previousChoice==3){
-          Scenario previousScenario=Scenario.Find(id-1);
+          Scenario previousScenario=Scenario.Find(previousScenarioId);
           previousChoiceText=previousScenario.GetOpt3ResultText();
           healthChange=previousScenario.GetOpt3Health();
           moodChange=previousScenario.GetOpt3Mood();
@@ -86,6 +93,8 @@ namespace SeattleRPG.Controllers
         model.Add("previousChoiceText", previousChoiceText);
       }
 
+      currentPlayer.SetPreviousScenarioId(randomId);
+      currentPlayer.UpdatePreviousScenarioId(randomId);
       model.Add("healthChange", healthChangeString);
       model.Add("moodChange", moodChangeString);
       model.Add("moneyChange", moneyChangeString);
@@ -102,11 +111,14 @@ namespace SeattleRPG.Controllers
     public ActionResult IndexPost(int id)
     {
       Player currentPlayer=Player.Find(0);
-      Scenario selectedScenario=Scenario.Find(id);
+
+      int previousScenarioId=currentPlayer.GetPreviousScenarioId();
+      Scenario selectedScenario=Scenario.Find(previousScenarioId);
       int choice=int.Parse(Request.Form["buttonVal"]);
       currentPlayer.SetPreviousChoice(choice);
+      // currentPlayer.SetPreviousScenarioId(id);
 
-
+      //Console.WriteLine("Previous Scenario ID on Post = "+previousScenarioId+"Day Id= "+id);
       int currentHealth=currentPlayer.GetHealth();
       int currentMood=currentPlayer.GetMood();
       int currentMoney=currentPlayer.GetMoney();
@@ -135,7 +147,7 @@ namespace SeattleRPG.Controllers
       currentMood=currentMood+moodChange;
       currentMoney=currentMoney+moneyChange;
 
-      currentPlayer.UpdatePlayerProperties(playerName, currentHealth, currentMood, currentMoney, choice);
+      currentPlayer.UpdatePlayerProperties(playerName, currentHealth, currentMood, currentMoney, choice, previousScenarioId);
 
       if (currentMood<0||currentMoney<0||currentHealth<0){
         return RedirectToAction("LoseGame", "Scenario", new { id = id});
