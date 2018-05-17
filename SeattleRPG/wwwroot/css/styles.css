@@ -168,3 +168,30 @@ div#footer {
   float: right;
   padding-right: 25px;
 }
+
+.player-form {
+  font-size: 15px;
+  font-style: normal;
+  position:fixed;
+  top:45%;
+  left:40%;
+  width:500px;
+}
+
+#player-page-header{
+  position:fixed;
+  top:5%;
+  left:40%;
+  width:450px;
+}
+
+.player-enter-page {
+  background-color: green;
+  background-image: url(/img/seattle_player_page.gif);
+}
+
+input::placeholder {
+  color: #00d118;
+  font-size: 1.2em;
+  text-align: center;
+}
