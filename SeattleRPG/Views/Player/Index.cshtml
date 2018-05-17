@@ -3,13 +3,31 @@
   Layout = "_Layout";
 }
 
-<meta charset="utf-8">
-<title>Seattle RPG</title>
-<link rel="stylesheet" href="/css/bootstrap.css">
-<link rel="stylesheet" href="~/css/styles.css">
-<script src="/scripts/jquery-3.3.1.js"></script>
-<form action="/player" method="post">
-  <label for="player-name">Please enter your name:</label>
-  <input id="player-name" name="player-name" type="text">
-  <button type="submit">Start Game</button>
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Seattle RPG</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/styles.css">
+    <script src="/scripts/jquery-3.3.1.js"></script>
+  </head>
+  <body class="player-enter-page">
+    <div class="container">
+      <div id="player-page-header" class="col-md-12">
+          <h1>Seattle RPG game</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form class="player-form" action="/player" method="post">
+            @* <label for="player-name">Please enter your name:</label> *@
+            <input id="player-name" class="form-control form-control-lg" name="player-name" type="text" placeholder="Enter your name">
+            <br>
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Start Game</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
