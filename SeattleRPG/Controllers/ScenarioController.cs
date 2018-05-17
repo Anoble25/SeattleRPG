@@ -192,8 +192,8 @@ namespace SeattleRPG.Controllers
     [HttpPost("/player/{name}/{score}/end")]
     public ActionResult EndOfTheGame(string name, int score)
     {
-      Highscore newHighscore = new Highscore(name, score);
-      newHighscore.SaveScore();
+      //Highscore newHighscore = new Highscore(name, score);
+      // newHighscore.SaveScore();
       return RedirectToAction("Index", "Player");
     }
   }

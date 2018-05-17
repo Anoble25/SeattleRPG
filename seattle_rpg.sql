@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 17, 2018 at 07:41 PM
+-- Generation Time: May 17, 2018 at 09:58 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -43,7 +43,26 @@ CREATE TABLE `current_player` (
 --
 
 INSERT INTO `current_player` (`id`, `name`, `health`, `mood`, `money`, `previous_choice`, `previous_scenario_id`) VALUES
-(0, '', 71, 283, 2043, 1, 24);
+(0, 'Justin', 83, 527, 4890, 3, 45);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `high_score`
+--
+
+CREATE TABLE `high_score` (
+  `id` int(11) NOT NULL,
+  `player_name` varchar(255) NOT NULL,
+  `score` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `high_score`
+--
+
+INSERT INTO `high_score` (`id`, `player_name`, `score`) VALUES
+(62, 'Justin', 4890);
 
 -- --------------------------------------------------------
 
@@ -141,6 +160,12 @@ ALTER TABLE `current_player`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `high_score`
+--
+ALTER TABLE `high_score`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `scenarios`
 --
 ALTER TABLE `scenarios`
@@ -150,6 +175,11 @@ ALTER TABLE `scenarios`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `high_score`
+--
+ALTER TABLE `high_score`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT for table `scenarios`
 --
